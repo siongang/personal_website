@@ -1,7 +1,6 @@
 import React from "react";
 import "./globals.css"; // <-- this is what ensures your scrollbar CSS applies globally
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
+
 
 export const metadata = {
   title: "Sion Gang",

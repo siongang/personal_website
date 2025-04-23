@@ -31,10 +31,10 @@ export default function HomePage() {
           <h2 className="text-4xl font-bold">About Me</h2>
           <div className="flex flex-col justify-center items-center w-1/2 text-center mt-8 space-y-6">
             <p className="text-lg">
-              Hey! I'm Sion, a Computer Engineering Student at the Univeristy of
-              Waterloo
+              {`Hey! I'm Sion, a Computer Engineering Student at the Univeristy of
+              Waterloo`}
               <br></br>
-              I'm a problem solver 🤔, music creator 🎧, tech enthusiast ⚙️, and a former nat TKD athlete 🥋
+              {`I'm a problem solver 🤔, music creator 🎧, tech enthusiast ⚙️, and a former nat TKD athlete 🥋`}
             </p>
             <div className="flex items-center gap-6 mt-4">
               <a href="mailto:siongang@gmail.com" target="_blank">

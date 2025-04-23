@@ -78,7 +78,7 @@ const WRAP_DELAY = 50;
 const WRAP_LOCK_DURATION = 600;
 
 export default function ProjectCarousel() {
-  const numCards = cards.length;
+  // const numgitgCards = cards.length;
   const [activeIndex, setActiveIndex] = useState(
     Math.floor((carouselCards.length - 1) / 2)
   );
