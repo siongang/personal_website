@@ -6,7 +6,7 @@ import React, {
   useLayoutEffect,
 } from "react";
 import Image from "next/image";
-import ProjectModal, { Project } from "./ProjectCard";
+import ProjectModal, { Project } from "@/components/ProjectCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const cards = [
