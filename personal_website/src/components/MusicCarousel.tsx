@@ -125,16 +125,16 @@ export default function MusicCarousel() {
   const handleLeft = () => {
     if (isLocked) return;
     lock();
-    togglePlayback();
-		setProgress(0);
+    // togglePlayback();
+    // setProgress(0);
     setActiveIndex((prev) => prev - 1);
   };
 
   const handleRight = () => {
     if (isLocked) return;
     lock();
-    togglePlayback();
-		setProgress(0);
+    // togglePlayback();
+    // setProgress(0);
     setActiveIndex((prev) => prev + 1);
   };
 
@@ -143,6 +143,21 @@ export default function MusicCarousel() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const [progress, setProgress] = useState(0); // 0 to 100
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+		if (activeIndex === 1 || activeIndex === carouselItems.length - 2) return;
+
+    // Reset playback
+    audio.currentTime = 0;
+    setProgress(0);
+
+    // Optionally start playing new track if one was already playing
+    if (isPlaying) {
+      audio.play();
+    }
+  }, [activeIndex, isAnimating]);
 
   const togglePlayback = () => {
     const audio = audioRef.current;
@@ -204,11 +219,11 @@ export default function MusicCarousel() {
                   height: `${itemContainerWidth}px`,
                 }}
               >
+                {/* Card */}
                 <div
                   className={`flex flex-col items-center w-[80%] h-[80%] p-2
-                    transition-all duration-300 ${
-                      isActive ? "opacity-100" : "opacity-50"
-                    }`}
+										${isAnimating ? "transition-all duration-300" : ""}
+										 ${isActive ? "opacity-100" : "opacity-50"}`}
                 >
                   <Image
                     src={item.image_path}

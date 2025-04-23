@@ -15,8 +15,10 @@ export default function HomePage() {
         <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
           <NavButton href="#projects">Projects</NavButton>
           <NavButton href="#music">Music</NavButton>
-          <NavButton href="#experience">Experience</NavButton>
-          <NavButton href="#contact">Contact</NavButton>
+          <NavButton href="#aboutme">About Me</NavButton>
+          {/* Uncomment when experience and contact sections are added */}
+          {/* <NavButton href="#experience">Experience</NavButton> */}
+          {/* <NavButton href="#contact">Contact</NavButton> */}
         </div>
       </section>
 
@@ -46,22 +48,32 @@ export default function HomePage() {
           <MusicCarousel />
         </div>
       </section>
-
-      {/* EXPERIENCE */}
       <section
+        id="aboutme"
+        className="h-screen flex flex-col justify-center items-center snap-start bg-black "
+      >
+        <h2 className="text-4xl font-bold">About Me</h2>
+        <div
+          className="flex flex-col justify-center items-center w-1/2 text-center mt-8">
+
+        </div>
+      </section>
+      {/* EXPERIENCE */}
+      {/* <section
         id="experience"
         className="h-screen flex justify-center items-center snap-start bg-black "
       >
         <h2 className="text-4xl font-bold">Experience</h2>
-      </section>
+      </section> */}
 
       {/* CONTACT */}
-      <section
+      {/* <section
         id="contact"
         className="h-screen flex justify-center items-center snap-start bg-black "
       >
         <h2 className="text-4xl font-bold">Contact</h2>
       </section>
-    </main>
+    */}
+    </main> 
   );
 }
