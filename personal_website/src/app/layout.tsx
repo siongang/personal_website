@@ -1,5 +1,5 @@
 import React from "react";
-import "@/app/globals.css"; // must be at the top
+import "./globals.css"; // <-- this is what ensures your scrollbar CSS applies globally
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 

@@ -1,29 +1,64 @@
-import React, { useRef, useEffect, useState, useMemo, useLayoutEffect } from "react";
+import React, {
+  useRef,
+  useEffect,
+  useState,
+  useMemo,
+  useLayoutEffect,
+} from "react";
 import Image from "next/image";
 import ProjectModal, { Project } from "./ProjectCard";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const cards = [
+  {
+    id: 3,
+    title: "Spill The Tea!",
+    image_path: "/images/projects/spill_the_tea_discord_bot.png",
+    description:
+      "A Discord Bot that maps out crushes. A fun way to spill the tea!",
+    tools: ["Python"],
+    links: [
+      { name: "Github", url: "https://github.com/siongang/Spill-The-Tea" },
+    ],
+  },
+
+  {
+    id: 2,
+    title: "This Website!",
+    image_path: "/images/projects/personal_website.png",
+    description: "",
+    tools: ["Typescript, Tailwind CSS, Next.js"],
+    links: [
+      { name: "Github", url: "https://github.com/siongang/personal_website" },
+    ],
+  },
   {
     id: 0,
     title: "Midilyzer",
     image_path: "/images/projects/midilyzer_app.png",
-    description: "alsdfjkaslkdfjalsdkfa",
+    description:
+      "A PySide Desktop App that transforms MIDI files into music visualizations",
     tools: ["Pyside, Python"],
-    links: [{ name: "Github", url: "https://github.com/siongang/Midilyzer" }],
+    links: [
+      { name: "Github", url: "https://github.com/siongang/Midilyzer" },
+      { name: "Demo", url: "https://youtu.be/zN7Q4XXJyzM" },
+    ],
   },
   {
     id: 1,
-    title: "Line Tracking Bot",
-    image_path: "/images/projects/line_following_robot.png",
-    description: "alskdjflaskdjfalskdjal",
-    tools: ["C, Arduino"],
+    title: "Social Media Agent",
+    image_path: "/images/projects/Topic_research_agent.png",
+    description:
+      "An AI Agent powered by Langchain and OpenAI that scrapes the web for trending topics in specified industries and generates social media content for companies",
+    tools: ["Python, Langchain, OpenAI, BrightData, Docker, Railway"],
   },
   {
-    id: 2,
-    title: "Spill The Tea!",
-    image_path: "/images/projects/spill_the_tea_discord_bot.png",
-    description: "alaslkdfjalskdfjalskdjfalskdjflak",
-    tools: ["Python"],
+    id: 4,
+    title: "Line Tracking Bot",
+    image_path: "/images/projects/line_following_robot.png",
+    description:
+      "A Fully Autonomous robot that can follow line using edge detection",
+    tools: ["C, Arduino"],
   },
   // { id: 3, title: "Project 4" },
   // { id: 4, title: "Project 5" },
@@ -61,11 +96,11 @@ export default function ProjectCarousel() {
 
   // State for tracking transitions
   const [isAnimating, setIsAnimating] = useState(true);
-  
+
   // Improved locking mechanism with timeout tracking
   const [isLocked, setIsLocked] = useState(false);
   const lockTimeoutRef = useRef<NodeJS.Timeout | null>(null);
-  
+
   const [selectedCard, setSelectedCard] = useState<Project | null>(null);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const isWrappingRef = useRef(false);
@@ -75,17 +110,17 @@ export default function ProjectCarousel() {
     if (lockTimeoutRef.current) {
       clearTimeout(lockTimeoutRef.current);
     }
-    
+
     setIsLocked(true);
-    
+
     // Safety timeout - ensure we unlock after maximum transition time
     // This prevents the carousel from getting permanently locked
     lockTimeoutRef.current = setTimeout(() => {
       setIsLocked(false);
-      isWrappingRef.current = false;  // Add this line
+      isWrappingRef.current = false; // Add this line
     }, duration);
   };
-  
+
   const unlock = () => {
     if (lockTimeoutRef.current) {
       clearTimeout(lockTimeoutRef.current);
@@ -117,13 +152,13 @@ export default function ProjectCarousel() {
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-  
+
     const handleTransitionEnd = () => {
       if (isLocked && isAnimating && !isWrappingRef.current) {
         unlock();
       }
     };
-  
+
     track.addEventListener("transitionend", handleTransitionEnd);
     return () => {
       track.removeEventListener("transitionend", handleTransitionEnd);
@@ -133,17 +168,17 @@ export default function ProjectCarousel() {
   // Handle wrapping logic
   useEffect(() => {
     let wrapTimeout: NodeJS.Timeout;
-  
+
     if (activeIndex === 1) {
       isWrappingRef.current = true;
       // Use a longer lock duration for wrapping
       lock(WRAP_LOCK_DURATION);
-      
+
       // Wrap left → jump to last real card
       wrapTimeout = setTimeout(() => {
         setIsAnimating(false); // Disable transition before jump
         setActiveIndex(carouselCards.length - 3); // Jump immediately
-  
+
         // Use requestAnimationFrame to ensure DOM has updated
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
@@ -155,12 +190,12 @@ export default function ProjectCarousel() {
       isWrappingRef.current = true;
       // Use a longer lock duration for wrapping
       lock(WRAP_LOCK_DURATION);
-      
+
       // Wrap right → jump to first real card
       wrapTimeout = setTimeout(() => {
         setIsAnimating(false);
         setActiveIndex(2);
-  
+
         requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             setIsAnimating(true);
@@ -168,12 +203,12 @@ export default function ProjectCarousel() {
         });
       }, TRANSITION_DURATION + WRAP_DELAY);
     }
-  
+
     return () => {
       if (wrapTimeout) clearTimeout(wrapTimeout);
     };
   }, [activeIndex, carouselCards.length]);
-  
+
   // Improved button handlers
   const handleLeft = () => {
     if (isLocked) return;
@@ -183,19 +218,23 @@ export default function ProjectCarousel() {
 
   const handleRight = () => {
     if (isLocked) return;
-    lock(); 
+    lock();
     setActiveIndex((prev) => prev + 1);
   };
 
   return (
     // Carousel Container
     <div className="flex flex-row justify-center w-full">
-      <button 
+      <button
         onClick={handleLeft}
         disabled={isLocked}
         className={isLocked ? "opacity-50 cursor-not-allowed" : ""}
       >
-        go left
+        <ChevronLeft
+          className="w-6 h-6 text-white
+                       hover:color-[#333] hover:scale-103 disabled:opacity-50 hover:cursor-pointer
+          "
+        />
       </button>
 
       {selectedCard && (
@@ -214,9 +253,7 @@ export default function ProjectCarousel() {
         <div
           ref={trackRef}
           className={`flex ${
-            isAnimating
-              ? "transition-transform duration-300 ease-in-out"
-              : ""
+            isAnimating ? "transition-transform duration-300 ease-in-out" : ""
           }`}
           style={{
             transform: `translateX(-${offsetX}px)`,
@@ -237,18 +274,27 @@ export default function ProjectCarousel() {
               >
                 {/* Card */}
                 <div
-                  className={`flex flex-col justify-center items-center w-1/2 h-1/2
-                    ${isAnimating ? "transition-all duration-300 ease-in-out" : ""}
-                    ${isActive ? "scale-140 z-10 hover:scale-150" : "scale-70 opacity-80 hover:scale-80 "}
+                  className={`flex flex-col justify-center items-center w-1/2 h-1/2 
+                    ${
+                      isAnimating
+                        ? "transition-all duration-300 ease-in-out"
+                        : ""
+                    }
+                    ${
+                      isActive
+                        ? "scale-160 z-10 hover:scale-170"
+                        : "scale-100 opacity-80 hover:scale-110 "
+                    }
                     hover:z-20 hover:opacity-100  cursor-pointer
                   `}
                   onClick={() => setSelectedCard(card)}
                 >
                   <Image
+                    // className="rounded-sm"
                     src={card.image_path}
                     alt={card.title}
-                    width={200}
-                    height={200}
+                    width={240}
+                    height={240}
                     priority={isActive}
                   />
                 </div>
@@ -258,12 +304,17 @@ export default function ProjectCarousel() {
         </div>
       </div>
 
-      <button 
+      <button
         onClick={handleRight}
         disabled={isLocked}
         className={isLocked ? "opacity-50 cursor-not-allowed" : ""}
       >
-        go right
+        <ChevronRight
+          className="w-6 h-6 text-white 
+                   hover:color-[#333] hover:scale-103 disabled:opacity-50 hover:cursor-pointer
+
+    "
+        />
       </button>
     </div>
   );

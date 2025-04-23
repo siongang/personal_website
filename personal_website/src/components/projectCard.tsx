@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 export type Project = {
   id: number;
@@ -26,8 +26,25 @@ const ProjectModal: React.FC<Props> = ({ card, onClose }) => {
       onClose();
     }, 200);
   };
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+      }
+    };
+  
+    window.addEventListener("keydown", handleKeyDown);
+  
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+  
+  
   
   return (
+
+    
     <div className="fixed inset-0 z-50 bg-black bg-opacity-60 backdrop-blur-sm overflow-y-auto">
       <div className="min-h-screen flex items-center justify-center px-4 py-8">
         <div

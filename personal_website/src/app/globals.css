@@ -33,3 +33,27 @@
     animation: fadeOut 0.2s ease-in forwards;
   }
   
+
+/* globals.css */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+  border-radius: 10px;
+  border: 2px solid #0d0d0d;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #444 #0d0d0d;
+}

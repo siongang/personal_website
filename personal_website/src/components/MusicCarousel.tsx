@@ -147,7 +147,7 @@ export default function MusicCarousel() {
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-		if (activeIndex === 1 || activeIndex === carouselItems.length - 2) return;
+    if (activeIndex === 1 || activeIndex === carouselItems.length - 2) return;
 
     // Reset playback
     audio.currentTime = 0;
@@ -251,7 +251,11 @@ export default function MusicCarousel() {
             disabled={isLocked}
             className="text-white cursor-pointer"
           >
-            <ChevronLeft className="w-6 h-6" />
+            <ChevronLeft
+              className="w-6 h-6
+                               hover:color-[#333] hover:scale-103 disabled:opacity-50 hover:cursor-pointer
+            "
+            />
           </button>
 
           <button
@@ -270,7 +274,11 @@ export default function MusicCarousel() {
             disabled={isLocked}
             className="text-white cursor-pointer"
           >
-            <ChevronRight className="w-6 h-6" />
+            <ChevronRight
+              className="w-6 h-6
+                               hover:color-[#333] hover:scale-103 disabled:opacity-50 hover:cursor-pointer
+            "
+            />
           </button>
         </div>
 
