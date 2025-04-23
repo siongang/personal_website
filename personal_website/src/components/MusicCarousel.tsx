@@ -10,11 +10,11 @@ import { Play, ChevronLeft, ChevronRight, Pause } from "lucide-react";
 
 const musicItems = [
   {
-    id: 0,
-    title: "About Love Recreation",
-    image_path: "/images/music/about_love.jpg",
-    music_path: "/music/about_love.wav",
-    links: [{ name: "Spotify", url: "https://spotify.com/lofi1" }],
+    id: 3,
+    title: "Run To the Sky",
+    image_path: "/images/music/moments.jpg",
+    music_path: "/music/run_to_the_sky.wav",
+    links: [{ name: "Apple Music", url: "https://apple.com/jazzfusion" }],
   },
   {
     id: 1,
@@ -24,11 +24,25 @@ const musicItems = [
     links: [{ name: "Apple Music", url: "https://apple.com/jazzfusion" }],
   },
   {
+    id: 0,
+    title: "About Love Recreation",
+    image_path: "/images/music/about_love.jpg",
+    music_path: "/music/about_love.wav",
+    links: [{ name: "Spotify", url: "https://spotify.com/lofi1" }],
+  },
+  {
     id: 2,
     title: "She Left",
     image_path: "/images/music/classical_volume_i.png",
     music_path: "/music/she_left.wav",
     links: [{ name: "Bandcamp", url: "https://bandcamp.com/synthwave" }],
+  },
+  {
+    id: 3,
+    title: "OMG",
+    image_path: "/images/music/omg_frnk.jpg",
+    music_path: "/music/omg_make_my_own.wav",
+    links: [{ name: "Apple Music", url: "https://apple.com/jazzfusion" }],
   },
 ];
 

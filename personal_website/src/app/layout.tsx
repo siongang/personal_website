@@ -6,6 +6,9 @@ import Footer from "@/components/Footer";
 export const metadata = {
   title: "Sion Gang",
   description: "Music & Code Portfolio",
+  icons: {
+    icon: "/njs.jpg", // or .ico or other formats
+  },
 };
 
 export default function RootLayout({

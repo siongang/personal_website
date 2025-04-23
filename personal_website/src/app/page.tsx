@@ -34,8 +34,7 @@ export default function HomePage() {
               Hey! I'm Sion, a Computer Engineering Student at the Univeristy of
               Waterloo
               <br></br>
-              I'm a problem solver 🤔, music artist 🎧, tech enthusiast ⚙️, and
-              a tkd sparring athlete 🥋
+              I'm a problem solver 🤔, music creator 🎧, tech enthusiast ⚙️, and a former nat TKD athlete 🥋
             </p>
             <div className="flex items-center gap-6 mt-4">
               <a href="mailto:siongang@gmail.com" target="_blank">
