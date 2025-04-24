@@ -22,6 +22,16 @@ const cards = [
   //   ],
   // },
   {
+    id: 2,
+    title: "This Website!",
+    image_path: "/images/projects/personal_website.png",
+    description: "",
+    tools: ["Typescript", "Tailwind CSS", "Next.js"],
+    links: [
+      { name: "Github", url: "https://github.com/siongang/personal_website" },
+    ],
+  },
+  {
     id: 3,
     title: "doubleURizz",
     image_path: "/images/projects/doubleUrRizz.jpg",
@@ -30,16 +40,6 @@ const cards = [
     tools: ["Python", "Flask", "OpenAI", "DeepFace"],
     links: [
       { name: "Github", url: "https://github.com/siongang/HackTheNorth23" },
-    ],
-  },
-  {
-    id: 2,
-    title: "This Website!",
-    image_path: "/images/projects/personal_website.png",
-    description: "",
-    tools: ["Typescript", "Tailwind CSS", "Next.js"],
-    links: [
-      { name: "Github", url: "https://github.com/siongang/personal_website" },
     ],
   },
   {
