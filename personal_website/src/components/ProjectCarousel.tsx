@@ -49,7 +49,7 @@ const cards = [
     title: "Social Media Agent",
     image_path: "/images/projects/Topic_research_agent.png",
     description:
-"An AI agent powered by Langchain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",    tools: ["Python, Langchain, OpenAI, BrightData, Docker, Railway"],
+"An AI agent powered by LangChain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",    tools: ["Python, LangChain, OpenAI, BrightData, Docker, Railway"],
   },
   {
     id: 4,
