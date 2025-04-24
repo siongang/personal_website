@@ -41,7 +41,7 @@ const cards = [
     tools: ["Pyside, Python"],
     links: [
       { name: "Github", url: "https://github.com/siongang/Midilyzer" },
-      { name: "Demo", url: "https://youtu.be/zN7Q4XXJyzM" },
+      { name: "Demo", url: "https://youtu.be/zN7Q4XXJyzM?si=PdVr86sORLMzf7cp&t=176" },
     ],
   },
   {

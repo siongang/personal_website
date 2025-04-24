@@ -14,35 +14,35 @@ const musicItems = [
     title: "Run To the Sky",
     image_path: "/images/music/moments.jpg",
     music_path: "/music/run_to_the_sky.wav",
-    links: [{ name: "Apple Music", url: "https://apple.com/jazzfusion" }],
+    links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=TDhDLmACNuk" }],
   },
   {
     id: 1,
     title: "Fairytale",
     image_path: "/images/music/classical_volume_i.png",
     music_path: "/music/fairytale.wav",
-    links: [{ name: "Apple Music", url: "https://apple.com/jazzfusion" }],
+    links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=_sNgREHWZGA" }],
   },
   {
     id: 0,
     title: "About Love [FLIP]",
     image_path: "/images/music/about_love.jpg",
     music_path: "/music/about_love.wav",
-    links: [{ name: "Spotify", url: "https://spotify.com/lofi1" }],
+    links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=PvpUp4rHLYc" }],
   },
   {
     id: 2,
     title: "She Left",
     image_path: "/images/music/classical_volume_i.png",
     music_path: "/music/she_left.wav",
-    links: [{ name: "Bandcamp", url: "https://bandcamp.com/synthwave" }],
+    links: [{ name: "Youtube", url: "https://youtu.be/kS3GQEDsoSs" }],
   },
   {
     id: 3,
     title: "OMG [FLIP]",
     image_path: "/images/music/omg_frnk.jpg",
     music_path: "/music/omg_make_my_own.wav",
-    links: [{ name: "Apple Music", url: "https://apple.com/jazzfusion" }],
+    links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=k0wS6eJ7-7U" }],
   },
 ];
 
@@ -235,9 +235,12 @@ export default function MusicCarousel() {
               >
                 {/* Card */}
                 <div
-                  className={`flex flex-col items-center w-[80%] h-[80%] p-2
+                  className={`flex flex-col items-center w-[80%] h-[80%] p-2 hover:cursor-pointer
 										${isAnimating ? "transition-all duration-300" : ""}
 										 ${isActive ? "opacity-100" : "opacity-50"}`}
+
+                    onClick={() => window.open(item.links[0].url, "_blank")}
+
                 >
                   <Image
                     src={item.image_path}
