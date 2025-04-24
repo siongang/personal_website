@@ -25,7 +25,7 @@ const musicItems = [
   },
   {
     id: 0,
-    title: "About Love Recreation",
+    title: "About Love [flip]",
     image_path: "/images/music/about_love.jpg",
     music_path: "/music/about_love.wav",
     links: [{ name: "Spotify", url: "https://spotify.com/lofi1" }],
@@ -39,7 +39,7 @@ const musicItems = [
   },
   {
     id: 3,
-    title: "OMG",
+    title: "OMG [flip]",
     image_path: "/images/music/omg_frnk.jpg",
     music_path: "/music/omg_make_my_own.wav",
     links: [{ name: "Apple Music", url: "https://apple.com/jazzfusion" }],
