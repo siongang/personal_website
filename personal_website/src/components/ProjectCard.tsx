@@ -44,27 +44,27 @@ const ProjectModal: React.FC<Props> = ({ card, onClose }) => {
   
   return (
 
-    
     <div className="fixed inset-0 z-50 bg-black bg-opacity-60 backdrop-blur-sm overflow-y-auto">
       <div className="min-h-screen flex items-center justify-center px-4 py-8">
         <div
-          className={`bg-[#1e1e1e]/90 text-white rounded-2xl shadow-2xl p-8 w-full max-w-3xl relative ${
+          className={`flex flex-col bg-[#1e1e1e]/90 text-white rounded-2xl shadow-2xl p-6 md:p-10 w-full max-w-3xl relative items-center ${
             exitingCard ? "fade-out" : "fade-in"
           }`}
         >
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="absolute top-4 right-4 text-white text-2xl font-bold hover:text-gray-400 transition"
+            className="absolute top-4 right-4 text-white text-2xl font-bold hover:text-gray-400 transition onHover: cursor-pointer"
           >
             ×
           </button>
 
           {/* Title */}
-          <h2 className="text-4xl font-bold mb-6 text-center">{card.title}</h2>
+          <h2 className="text-4xl font-bold mb-4 text-center">{card.title}</h2>
 
           {/* Tools / Technologies */}
-          <div className="mb-6 flex flex-wrap justify-center gap-3">
+
+          <div className="mb-6 mt-2 flex flex-wrap justify-center gap-2">
             {card.tools.map((tool, i) => (
               <span
                 key={i}
@@ -77,7 +77,7 @@ const ProjectModal: React.FC<Props> = ({ card, onClose }) => {
 
           {/* Links */}
           {card.links && (
-            <div className="mb-8 flex justify-center gap-6 flex-wrap">
+            <div className="my-1 flex justify-center gap-6 flex-wrap">
               {card.links.map((link, i) => (
                 <a
                   key={i}
@@ -93,7 +93,7 @@ const ProjectModal: React.FC<Props> = ({ card, onClose }) => {
           )}
 
           {/* Image */}
-          <div className="mb-8 flex justify-center">
+          <div className="my-6 flex justify-center">
             <Image
               src={card.image_path}
               alt={card.title}
@@ -104,9 +104,11 @@ const ProjectModal: React.FC<Props> = ({ card, onClose }) => {
           </div>
 
           {/* Description */}
-          <p className="text-md leading-relaxed text-gray-300 text-center px-2">
-            {card.description}
-          </p>
+          <div className="mt-6 pt-6 border-t border-white/10 w-full">
+            <p className="text-sm text-gray-300 leading-relaxed max-w-[60ch] text-center mx-auto">
+              {card.description}
+            </p>
+          </div>
         </div>
       </div>
     </div>
