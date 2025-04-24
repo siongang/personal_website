@@ -10,24 +10,34 @@ import ProjectModal, { Project } from "@/components/ProjectCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const cards = [
+  // {
+  //   id: 3,
+  //   title: "Spill The Tea!",
+  //   image_path: "/images/projects/spill_the_tea_discord_bot.png",
+  //   description:
+  //     "A Discord Bot that maps out crushes. A fun way to spill the tea!",
+  //   tools: ["Python"],
+  //   links: [
+  //     { name: "Github", url: "https://github.com/siongang/Spill-The-Tea" },
+  //   ],
+  // },
   {
     id: 3,
-    title: "Spill The Tea!",
-    image_path: "/images/projects/spill_the_tea_discord_bot.png",
+    title: "doubleURizz",
+    image_path: "/images/projects/doubleUrRizz.jpg",
     description:
-      "A Discord Bot that maps out crushes. A fun way to spill the tea!",
-    tools: ["Python"],
+      "A Chat GPT powered Charisma Coach to provide real-time personalized training for improving user’s charisma",
+    tools: ["Python", "Flask", "OpenAI", "DeepFace"],
     links: [
-      { name: "Github", url: "https://github.com/siongang/Spill-The-Tea" },
+      { name: "Github", url: "https://github.com/siongang/HackTheNorth23" },
     ],
   },
-
   {
     id: 2,
     title: "This Website!",
     image_path: "/images/projects/personal_website.png",
     description: "",
-    tools: ["Typescript, Tailwind CSS, Next.js"],
+    tools: ["Typescript", "Tailwind CSS", "Next.js"],
     links: [
       { name: "Github", url: "https://github.com/siongang/personal_website" },
     ],
@@ -38,10 +48,13 @@ const cards = [
     image_path: "/images/projects/midilyzer_app.png",
     description:
       "A PySide Desktop App that transforms MIDI files into customizable music visualizations",
-    tools: ["Pyside, Python"],
+    tools: ["Pyside", "Python"],
     links: [
       { name: "Github", url: "https://github.com/siongang/Midilyzer" },
-      { name: "Demo", url: "https://youtu.be/zN7Q4XXJyzM?si=PdVr86sORLMzf7cp&t=176" },
+      {
+        name: "Demo",
+        url: "https://youtu.be/zN7Q4XXJyzM?si=PdVr86sORLMzf7cp&t=176",
+      },
     ],
   },
   {
@@ -49,16 +62,17 @@ const cards = [
     title: "Social Media Agent",
     image_path: "/images/projects/Topic_research_agent.png",
     description:
-"An AI agent powered by LangChain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",    tools: ["Python, LangChain, OpenAI, BrightData, Docker, Railway"],
+      "An AI agent powered by LangChain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",
+    tools: ["Python, LangChain, OpenAI, BrightData, Docker, Railway"],
   },
-  {
-    id: 4,
-    title: "Line Tracking Bot",
-    image_path: "/images/projects/line_following_robot.png",
-    description:
-      "A Fully Autonomous robot that traverses a maze using edge detection",
-    tools: ["C, Arduino"],
-  },
+  // {
+  //   id: 4,
+  //   title: "Line Tracking Bot",
+  //   image_path: "/images/projects/line_following_robot.png",
+  //   description:
+  //     "A Fully Autonomous robot that traverses a maze using edge detection",
+  //   tools: ["C, Arduino"],
+  // },
   // { id: 3, title: "Project 4" },
   // { id: 4, title: "Project 5" },
 ];
