@@ -63,7 +63,7 @@ const cards = [
     image_path: "/images/projects/Topic_research_agent.png",
     description:
       "An AI agent powered by LangChain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",
-    tools: ["Python, LangChain, OpenAI, BrightData, Docker, Railway"],
+    tools: ["Python", "LangChain", "OpenAI", "BrightData", "Docker", "Railway"],
   },
   // {
   //   id: 4,
