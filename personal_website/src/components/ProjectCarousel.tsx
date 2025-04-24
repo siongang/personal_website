@@ -37,7 +37,7 @@ const cards = [
     title: "Midilyzer",
     image_path: "/images/projects/midilyzer_app.png",
     description:
-      "A PySide Desktop App that transforms MIDI files into music visualizations",
+      "A PySide Desktop App that transforms MIDI files into customizable music visualizations",
     tools: ["Pyside, Python"],
     links: [
       { name: "Github", url: "https://github.com/siongang/Midilyzer" },
@@ -49,15 +49,14 @@ const cards = [
     title: "Social Media Agent",
     image_path: "/images/projects/Topic_research_agent.png",
     description:
-      "An AI Agent powered by Langchain and OpenAI that scrapes the web for trending topics in specified industries and generates social media content for companies",
-    tools: ["Python, Langchain, OpenAI, BrightData, Docker, Railway"],
+"An AI agent powered by Langchain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",    tools: ["Python, Langchain, OpenAI, BrightData, Docker, Railway"],
   },
   {
     id: 4,
     title: "Line Tracking Bot",
     image_path: "/images/projects/line_following_robot.png",
     description:
-      "A Fully Autonomous robot that can follow line using edge detection",
+      "A Fully Autonomous robot that traverses a maze using edge detection",
     tools: ["C, Arduino"],
   },
   // { id: 3, title: "Project 4" },

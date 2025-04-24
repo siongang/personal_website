@@ -126,7 +126,7 @@ export default function HomePage() {
 
   {/* Fixed height footer, NOT fixed position anymore */}
   <footer className="w-full bg-black text-gray-500 text-xs text-center py-2 border-t border-gray-700">
-    <p>© {new Date().getFullYear()} Sion Gang. Built with the consumption of too much instant ramen.</p>
+    <p>© {new Date().getFullYear()} Sion Gang. Built with too much instant ramen and not enough sleep.</p>
   </footer>
       </div>
   );
