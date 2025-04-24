@@ -56,7 +56,7 @@ export default function HomePage() {
                 <Instagram className="w-6 h-6 hover:opacity-80 transition" />
               </a>
               <a
-                href="/Sion_Gang_Resume_2025-04-06.pdf"
+                // href="/Sion_Gang_Resume_2025-04-06.pdf"
                 target="_blank"
                 className="flex items-center space-x-1 hover:opacity-80 transition"
               >
