@@ -32,9 +32,9 @@ export default function HomePage() {
           <div className="flex flex-col justify-center items-center w-1/2 text-center mt-8 space-y-6">
             <p className="text-lg">
               {`Hey! I'm Sion, a Computer Engineering Student at the Univeristy of
-              Waterloo`}
+              Waterloo.`}
               <br></br>
-              {`I'm a problem solver 🤔, music creator 🎧, tech enthusiast ⚙️, and former national-stage kicker 🥋`}
+              {`I'm also a problem solver 🤔, music creator 🎧, tech enthusiast ⚙️, and a former national-stage kicker 🥋`}
               </p>
             <div className="flex items-center gap-6 mt-4">
               <a href="mailto:siongang@gmail.com" target="_blank">
