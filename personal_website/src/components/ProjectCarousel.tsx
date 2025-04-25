@@ -60,7 +60,7 @@ const cards = [
     title: "This Website!",
     image_path: "/images/projects/personal_website.png",
     description: "",
-    tools: ["Typescript", "Tailwind CSS", "Next.js"],
+    tools: ["TypeScript", "Tailwind", "Next.js"],
     links: [
       { name: "Github", url: "https://github.com/siongang/personal_website" },
     ],
