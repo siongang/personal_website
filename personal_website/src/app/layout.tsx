@@ -1,6 +1,6 @@
 import React from "react";
 import "./globals.css"; // <-- this is what ensures your scrollbar CSS applies globally
-
+import { Analytics } from "@vercel/analytics/react"
 
 export const metadata = {
   title: "Sion Gang",
