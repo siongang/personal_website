@@ -22,16 +22,6 @@ const cards = [
   //   ],
   // },
   {
-    id: 2,
-    title: "This Website!",
-    image_path: "/images/projects/personal_website.png",
-    description: "",
-    tools: ["Typescript", "Tailwind CSS", "Next.js"],
-    links: [
-      { name: "Github", url: "https://github.com/siongang/personal_website" },
-    ],
-  },
-  {
     id: 3,
     title: "doubleURizz",
     image_path: "/images/projects/doubleUrRizz.jpg",
@@ -47,7 +37,7 @@ const cards = [
     title: "Midilyzer",
     image_path: "/images/projects/midilyzer_app.png",
     description:
-      "A PySide Desktop App that transforms MIDI files into customizable music visualizations",
+    "A PySide Desktop App that transforms MIDI files into customizable music visualizations",
     tools: ["Pyside", "Python"],
     links: [
       { name: "Github", url: "https://github.com/siongang/Midilyzer" },
@@ -62,8 +52,18 @@ const cards = [
     title: "Social Media Agent",
     image_path: "/images/projects/Topic_research_agent.png",
     description:
-      "An AI agent powered by LangChain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",
+    "An AI agent powered by LangChain and OpenAI that dynamically researches trending topics across the web and social media platforms based on inputted keywords, generating tailored content for companies in specified industries.",
     tools: ["Python", "LangChain", "OpenAI", "BrightData", "Docker", "Railway"],
+  },
+  {
+    id: 2,
+    title: "This Website!",
+    image_path: "/images/projects/personal_website.png",
+    description: "",
+    tools: ["Typescript", "Tailwind CSS", "Next.js"],
+    links: [
+      { name: "Github", url: "https://github.com/siongang/personal_website" },
+    ],
   },
   // {
   //   id: 4,
