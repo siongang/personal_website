@@ -26,8 +26,8 @@ const cards = [
     title: "doubleURizz",
     image_path: "/images/projects/doubleUrRizz.jpg",
     description:
-      "A Chat GPT powered Charisma Coach to provide real-time personalized training for improving user’s charisma",
-    tools: ["Python", "Flask", "OpenAI", "DeepFace"],
+      "An AI Coach helping users improve their charisma with real-time personalized training sessions and feedback.",
+    tools: ["Python", "Flask", "OpenAI", "DeepFace", "OpenCV"],
     links: [
       { name: "Github", url: "https://github.com/siongang/HackTheNorth23" },
     ],
