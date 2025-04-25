@@ -20,6 +20,7 @@ export default function RootLayout({
       <body className="bg-black text-white">
         {/* <Navbar /> */}
         <main className="flex-grow bg-black">{children}</main>
+        <Analytics />
         {/* <Footer /> */}
       </body>
     </html>
