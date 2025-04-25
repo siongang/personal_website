@@ -8,7 +8,7 @@ import { Mail, Github, Linkedin, Instagram, Link } from "lucide-react";
 export default function HomePage() {
   return (
     <div className="h-screen w-full flex flex-col bg-black text-white">
-  <main className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth pr-4">
+  <main className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth ">
   {/* HERO SECTION */}
         <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 snap-start">
           <h1 className="text-6xl md:text-7xl font-extrabold tracking-wide mb-12">
