@@ -8,7 +8,7 @@ import { Mail, Github, Linkedin, Instagram, Link } from "lucide-react";
 export default function HomePage() {
   return (
     <div className="h-screen w-full flex flex-col bg-black text-white overflow-x-hidden">
-      <main className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth ">
+      <main className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth overflow-x-hidden">
         {/* HERO SECTION */}
         <section className="min-h-screen flex flex-col justify-center items-center text-center px-6 snap-start">
           <h1 className="text-6xl md:text-7xl font-extrabold tracking-wide mb-12">
@@ -72,7 +72,7 @@ export default function HomePage() {
         {/* PROJECTS */}
         <section
           id="projects"
-          className="min-h-screen flex flex-col justify-center items-center snap-start bg-black "
+          className="h-screen flex flex-col justify-center items-center snap-start bg-black "
         >
           <div className="flex">
             <h2 className="text-4xl font-bold">Projects</h2>
@@ -95,7 +95,7 @@ export default function HomePage() {
         {/* MUSIC */}
         <section
           id="music"
-          className="min-h-screen flex flex-col justify-center items-center snap-start bg-black "
+          className="h-screen flex flex-col justify-center items-center snap-start bg-black "
         >
           <div className="flex">
             <h2 className="text-4xl font-bold">Music</h2>
@@ -124,7 +124,7 @@ export default function HomePage() {
     */}
       </main>
 
-      {/* Fixed height footer, NOT fixed position anymore */}
+      {/* FOOTER*/}
       <footer className="w-full bg-black text-gray-500 text-xs text-center py-2 border-t border-gray-700">
         <p>
           © {new Date().getFullYear()} Sion Gang. Built with too much instant
