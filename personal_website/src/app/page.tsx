@@ -7,10 +7,10 @@ import { Mail, Github, Linkedin, Instagram, Link } from "lucide-react";
 
 export default function HomePage() {
   return (
-    <div className="h-screen w-full flex flex-col bg-black text-white overflow-x-hidden">
+    <div className="h-[100dvh] w-full flex flex-col bg-black text-white overflow-x-hidden">
       <main className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth overflow-x-hidden">
         {/* HERO SECTION */}
-        <section className="h-full flex flex-col justify-center items-center text-center px-6 snap-start">
+        <section className="h-full flex flex-col justify-center items-center text-center px-6 snap-start ">
           <h1 className="text-6xl md:text-7xl font-extrabold tracking-wide mb-12">
             SION GANG
           </h1>
@@ -26,7 +26,7 @@ export default function HomePage() {
 
         <section
           id="aboutme"
-          className="h-full flex flex-col justify-center items-center snap-start bg-black text-white"
+          className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black text-white"
         >
           <h2 className="text-4xl font-bold">About Me</h2>
           <div className="flex flex-col justify-center items-center w-[75%] md:w-1/2  text-center mt-8 space-y-6">
@@ -72,7 +72,7 @@ export default function HomePage() {
         {/* PROJECTS */}
         <section
           id="projects"
-          className="h-full flex flex-col justify-center items-center snap-start bg-black "
+          className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
         >
           <div className="flex">
             <h2 className="text-4xl font-bold">Projects</h2>
@@ -95,7 +95,7 @@ export default function HomePage() {
         {/* MUSIC */}
         <section
           id="music"
-          className="h-full flex flex-col justify-center items-center snap-start bg-black "
+          className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
         >
           <div className="flex">
             <h2 className="text-4xl font-bold">Music</h2>
