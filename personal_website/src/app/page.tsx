@@ -29,7 +29,7 @@ export default function HomePage() {
           className="h-screen flex flex-col justify-center items-center snap-start bg-black text-white"
         >
           <h2 className="text-4xl font-bold">About Me</h2>
-          <div className="flex flex-col justify-center items-center w-1/2 text-center mt-8 space-y-6">
+          <div className="flex flex-col justify-center items-center w-1/2 min-w-[350px] text-center mt-8 space-y-6">
             <p className="text-lg">
               {`Hey! I'm Sion, a Computer Engineering Student at the Univeristy of
               Waterloo.`}

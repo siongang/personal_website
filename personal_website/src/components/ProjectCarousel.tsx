@@ -260,7 +260,7 @@ export default function ProjectCarousel() {
       {/* Cards Viewport */}
       <div
         ref={viewportRef}
-        className="flex flex-row overflow-hidden w-full max-w-screen-lg"
+        className="flex flex-row overflow-hidden w-full max-w-screen-lg min-w-[350px]"
       >
         {/* Cards Track */}
         <div
