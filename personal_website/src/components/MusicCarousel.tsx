@@ -210,7 +210,8 @@ export default function MusicCarousel() {
       {/* Carousel Viewport */}
       <div
         ref={viewportRef}
-        className="flex flex-row overflow-hidden w-full max-w-screen-lg"
+        className="flex flex-row overflow-hidden w-full max-w-screen-lg min-h-[150px]"
+        
       >
         <div
           ref={trackRef}
