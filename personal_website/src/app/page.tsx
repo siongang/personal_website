@@ -26,11 +26,11 @@ export default function HomePage() {
 
         <section
           id="aboutme"
-          className="h-screen flex flex-col justify-center items-center snap-start bg-black text-white"
+          className="h-full flex flex-col justify-center items-center snap-start bg-black text-white"
         >
           <h2 className="text-4xl font-bold">About Me</h2>
-          <div className="flex flex-col justify-center items-center w-1/2 min-w-[350px] text-center mt-8 space-y-6">
-            <p className="text-lg">
+          <div className="flex flex-col justify-center items-center w-full md:w-1/2 md:min-w-[350px] text-center mt-8 space-y-6">
+          <p className="text-lg">
               {`Hey! I'm Sion, a Computer Engineering Student at the Univeristy of
               Waterloo.`}
               <br></br>
@@ -72,7 +72,7 @@ export default function HomePage() {
         {/* PROJECTS */}
         <section
           id="projects"
-          className="h-screen flex flex-col justify-center items-center snap-start bg-black "
+          className="h-full flex flex-col justify-center items-center snap-start bg-black "
         >
           <div className="flex">
             <h2 className="text-4xl font-bold">Projects</h2>
@@ -95,7 +95,7 @@ export default function HomePage() {
         {/* MUSIC */}
         <section
           id="music"
-          className="h-screen flex flex-col justify-center items-center snap-start bg-black "
+          className="h-full flex flex-col justify-center items-center snap-start bg-black "
         >
           <div className="flex">
             <h2 className="text-4xl font-bold">Music</h2>
