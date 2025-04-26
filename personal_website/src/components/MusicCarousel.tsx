@@ -262,7 +262,7 @@ export default function MusicCarousel() {
       </div>
 
       {/* Control Panel */}
-      <div className="w-full max-w-screen-lg px-6 flex flex-col  items-center gap-2">
+      <div className="w-full max-w-screen-lg min-w-[450px] px-6 flex flex-col  items-center gap-2">
         <div className="flex items-center justify-center gap-6">
           <button
             onClick={handleLeft}
