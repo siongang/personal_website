@@ -75,7 +75,7 @@ export default function HomePage() {
           className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
         >
           <div className="flex">
-            <h2 className="text-4xl font-bold">Projects</h2>
+            <h2 className="text-4xl font-bold">My Projects</h2>
           </div>
           <div className="flex flex-col items-center justify-center w-1/2">
             <ProjectCarousel />
@@ -98,7 +98,7 @@ export default function HomePage() {
           className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
         >
           <div className="flex">
-            <h2 className="text-4xl font-bold">Music</h2>
+            <h2 className="text-4xl font-bold">My Music</h2>
           </div>
 
           <div className="flex flex-row justify-center w-1/2">
