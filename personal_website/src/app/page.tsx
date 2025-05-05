@@ -30,7 +30,7 @@ export default function HomePage() {
         >
           <h2 className="text-4xl font-bold">About Me</h2>
           <div className="flex flex-col justify-center items-center w-[75%] md:w-1/2  text-center mt-8 space-y-6">
-          <p className="text-lg">
+            <p className="text-lg">
               {`Hey! I'm Sion, a Computer Engineering Student at the Univeristy of
               Waterloo.`}
               <br></br>
@@ -75,7 +75,7 @@ export default function HomePage() {
           className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
         >
           <div className="flex">
-            <h2 className="text-4xl font-bold">My Projects</h2>
+            <h2 className="text-4xl font-bold">Projects</h2>
           </div>
           <div className="flex flex-col items-center justify-center w-1/2">
             <ProjectCarousel />
@@ -97,8 +97,9 @@ export default function HomePage() {
           id="music"
           className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
         >
-          <div className="flex">
-            <h2 className="text-4xl font-bold">My Music</h2>
+          <div className="flex flex-col items-center justify-center ">
+            <h2 className="text-4xl font-bold">Music</h2>
+            <p className="text-sm text-gray-400 mt-2 ml-1">originals composed and produced by yours truly.</p>
           </div>
 
           <div className="flex flex-row justify-center w-1/2">
