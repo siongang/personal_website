@@ -61,7 +61,7 @@ export default function HomePage() {
                 className="flex items-center space-x-1 hover:opacity-80 transition"
               >
                 <Link className="w-4 h-4" />
-                <span className="underline text-gray-400 hover:text-white">
+                <span className="underline text-white hover:text-gray-400">
                   My Resume
                 </span>
               </a>
