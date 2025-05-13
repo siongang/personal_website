@@ -33,6 +33,18 @@ const cards = [
     ],
   },
   {
+    id: 5,
+    title: "PDF Orientation Tool",
+    image_path: "/images/projects/pdf_orientation.png",
+    description:
+      "A full-stack website that allows users to correct orientation of PDFs using OCR Text Recognition, rotate individual pages, merge different files together, and more!",
+    tools: ["React.js", "Next.js", "Tesseract OCR", "TypeScript", "Tailwind"],
+    links: [
+      { name: "Visit Site", url: "https://pdforientation.siongang.com" },
+      { name: "Github", url: "https://github.com/siongang/FileOrientationFixer" },
+    ],
+  },
+  {
     id: 0,
     title: "Midilyzer",
     image_path: "/images/projects/midilyzer_app.png",
@@ -45,18 +57,6 @@ const cards = [
         name: "Demo",
         url: "https://youtu.be/zN7Q4XXJyzM?si=PdVr86sORLMzf7cp&t=176",
       },
-    ],
-  },
-  {
-    id: 5,
-    title: "PDF Orientation Tool",
-    image_path: "/images/projects/pdf_orientation.png",
-    description:
-      "A full-stack website that allows users to correct orientation of PDFs using OCR Text Recognition, rotate individual pages, merge different files together, and more!",
-    tools: ["React.js", "Next.js", "Tesseract OCR", "TypeScript", "Tailwind"],
-    links: [
-      { name: "Visit Site", url: "https://pdforientation.siongang.com" },
-      { name: "Github", url: "https://github.com/siongang/FileOrientationFixer" },
     ],
   },
 
