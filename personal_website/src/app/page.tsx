@@ -3,7 +3,7 @@
 import MusicCarousel from "@/components/MusicCarousel";
 import NavButton from "@/components/NavButton";
 // import ProjectCarousel from "@/components/ProjectCarousel";
-import { Mail, Github, Linkedin, Instagram, Link } from "lucide-react";
+import { Mail, Github, Linkedin, Instagram } from "lucide-react";
 
 export default function HomePage() {
   return (
