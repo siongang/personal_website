@@ -16,7 +16,7 @@ export default function HomePage() {
           </h1>
           <div className="flex flex-wrap justify-center gap-4 text-sm md:text-base">
             <NavButton href="#aboutme">About</NavButton>
-            <NavButton href="#projects">Projects</NavButton>
+            {/* <NavButton href="#projects">Projects</NavButton> */}
             <NavButton href="#music">Music</NavButton>
             {/* Uncomment when experience and contact sections are added */}
             {/* <NavButton href="#experience">Experience</NavButton> */}
