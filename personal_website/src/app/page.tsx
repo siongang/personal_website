@@ -55,7 +55,7 @@ export default function HomePage() {
               >
                 <Instagram className="w-6 h-6 hover:opacity-80 transition" />
               </a>
-              <a
+              {/* <a
                 href="/SionGangResumePersonal.pdf"
                 target="_blank"
                 className="flex items-center space-x-1 hover:opacity-80 transition"
@@ -64,13 +64,13 @@ export default function HomePage() {
                 <span className="underline text-white hover:text-opacity-80 transition">
                   My Resume
                 </span>
-              </a>
+              </a> */}
             </div>
           </div>
         </section>
 
         {/* PROJECTS */}
-        <section
+        {/* <section
           id="projects"
           className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
         >
@@ -90,7 +90,7 @@ export default function HomePage() {
               </a>
             </div>
           </div>
-        </section>
+        </section> */}
 
         {/* MUSIC */}
         <section
@@ -128,8 +128,7 @@ export default function HomePage() {
       {/* FOOTER*/}
       <footer className="w-full bg-black text-gray-500 text-xs text-center py-2 border-t border-gray-700">
         <p>
-          © {new Date().getFullYear()} Sion Gang. Built with too much instant
-          ramen and not enough sleep.
+          © {new Date().getFullYear()} Sion Gang.
         </p>
       </footer>
     </div>
