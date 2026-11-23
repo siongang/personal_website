@@ -8,9 +8,9 @@ import { Mail, Github, Linkedin, Instagram } from "lucide-react";
 export default function HomePage() {
   return (
     <div className="h-[100dvh] w-full flex flex-col bg-black text-white overflow-x-hidden">
-      <main className="flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth overflow-x-hidden">
+      <main className="min-h-0 flex-1 overflow-y-auto snap-y snap-mandatory scroll-smooth overflow-x-hidden">
         {/* HERO SECTION */}
-        <section className="h-full flex flex-col justify-center items-center text-center px-6 snap-start ">
+        <section className="min-h-full flex flex-col justify-center items-center text-center px-6 py-10 snap-start">
           <h1 className="text-6xl md:text-7xl font-extrabold tracking-wide mb-12">
             SION GANG
           </h1>
@@ -26,7 +26,7 @@ export default function HomePage() {
 
         <section
           id="aboutme"
-          className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black text-white"
+          className="min-h-full flex flex-col justify-center items-center py-10 snap-start bg-black text-white"
         >
           <h2 className="text-4xl font-bold">About Me</h2>
           <div className="flex flex-col justify-center items-center w-[75%] md:w-1/2  text-center mt-8 space-y-6">
@@ -95,9 +95,9 @@ export default function HomePage() {
         {/* MUSIC */}
         <section
           id="music"
-          className="h-full flex flex-col justify-center items-center snap-start scroll-my-[15px] bg-black "
+          className="min-h-full flex flex-col justify-center items-center py-10 snap-start bg-black"
         >
-          <div className="flex flex-col items-center justify-center ">
+          <div className="flex flex-col items-center justify-center px-4 text-center">
             <h2 className="text-4xl font-bold">Music</h2>
             <p className="text-sm text-gray-400 mt-2 ml-1">originals composed and produced by yours truly.</p>
           </div>
@@ -126,7 +126,7 @@ export default function HomePage() {
       </main>
 
       {/* FOOTER*/}
-      <footer className="w-full bg-black text-gray-500 text-xs text-center py-2 border-t border-gray-700">
+      <footer className="shrink-0 w-full bg-black text-gray-500 text-xs text-center py-2 border-t border-gray-700">
         <p>
           © {new Date().getFullYear()} Sion Gang.
         </p>
