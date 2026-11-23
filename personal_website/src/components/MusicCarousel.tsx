@@ -69,6 +69,7 @@ const isCurrentTrack = (audio: HTMLAudioElement, path: string) =>
   Boolean(audio.currentSrc) && new URL(audio.currentSrc).pathname === path;
 
 export default function MusicCarousel() {
+  const playerRef = useRef<HTMLDivElement | null>(null);
   const [activeIndex, setActiveIndex] = useState(
     Math.floor((carouselItems.length - 1) / 2)
   );
@@ -162,6 +163,31 @@ export default function MusicCarousel() {
     setActiveIndex((prev) => prev + 1);
   }, [isLocked, lock]);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (
+        event.defaultPrevented || event.isComposing || event.repeat ||
+        event.altKey || event.ctrlKey || event.metaKey || event.shiftKey ||
+        (event.key !== "ArrowLeft" && event.key !== "ArrowRight")
+      ) return;
+
+      // Keep native arrow-key behavior for seeking and editable controls.
+      if (event.target instanceof HTMLElement && event.target.closest(
+        'input, textarea, select, [contenteditable]:not([contenteditable="false"])'
+      )) return;
+
+      const bounds = playerRef.current?.getBoundingClientRect();
+      if (!bounds || bounds.bottom <= 0 || bounds.top >= window.innerHeight) return;
+
+      event.preventDefault();
+      if (event.key === "ArrowLeft") handleLeft();
+      else handleRight();
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [handleLeft, handleRight]);
+
   // Audio
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const playbackRequestedRef = useRef(false);
@@ -230,7 +256,7 @@ export default function MusicCarousel() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center gap-4">
+    <div ref={playerRef} className="w-full flex flex-col items-center gap-4">
       {/* Carousel Viewport */}
       <div
         ref={viewportRef}
@@ -292,6 +318,7 @@ export default function MusicCarousel() {
             onClick={handleLeft}
             disabled={isLocked}
             aria-label="Previous track"
+            aria-keyshortcuts="ArrowLeft"
             className="rounded-full p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
           >
             <ChevronLeft
@@ -317,6 +344,7 @@ export default function MusicCarousel() {
             onClick={handleRight}
             disabled={isLocked}
             aria-label="Next track"
+            aria-keyshortcuts="ArrowRight"
             className="rounded-full p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
           >
             <ChevronRight
