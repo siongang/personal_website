@@ -4,6 +4,7 @@ import React, {
   useState,
   useMemo,
   useLayoutEffect,
+  useCallback,
 } from "react";
 import Image from "next/image";
 import { Play, ChevronLeft, ChevronRight, Pause } from "lucide-react";
@@ -14,6 +15,7 @@ const musicItems = [
     title: "Run To the Sky",
     image_path: "/images/music/moments.jpg",
     music_path: "/music/run_to_the_sky.wav",
+    duration: 133.245329,
     links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=TDhDLmACNuk" }],
   },
   {
@@ -21,6 +23,7 @@ const musicItems = [
     title: "Fairytale",
     image_path: "/images/music/classical_volume_i.png",
     music_path: "/music/fairytale.wav",
+    duration: 100.3239,
     links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=_sNgREHWZGA" }],
   },
   {
@@ -28,6 +31,7 @@ const musicItems = [
     title: "About Love [FLIP]",
     image_path: "/images/music/about_love.jpg",
     music_path: "/music/about_love.wav",
+    duration: 125.200023,
     links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=PvpUp4rHLYc" }],
   },
   {
@@ -35,6 +39,7 @@ const musicItems = [
     title: "She Left",
     image_path: "/images/music/classical_volume_i.png",
     music_path: "/music/she_left.wav",
+    duration: 95.423379,
     links: [{ name: "Youtube", url: "https://youtu.be/kS3GQEDsoSs" }],
   },
   {
@@ -42,6 +47,7 @@ const musicItems = [
     title: "OMG [FLIP]",
     image_path: "/images/music/omg_frnk.jpg",
     music_path: "/music/omg_make_my_own.wav",
+    duration: 89.488186,
     links: [{ name: "Youtube", url: "https://www.youtube.com/watch?v=k0wS6eJ7-7U" }],
   },
 ];
@@ -53,6 +59,14 @@ const carouselItems = [...lastTwo, ...musicItems, ...firstTwo];
 const TRANSITION_DURATION = 300;
 const WRAP_DELAY = 50;
 const WRAP_LOCK_DURATION = 600;
+
+const formatTime = (seconds: number) => {
+  const total = Math.floor(Number.isFinite(seconds) ? seconds : 0);
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
+};
+
+const isCurrentTrack = (audio: HTMLAudioElement, path: string) =>
+  Boolean(audio.currentSrc) && new URL(audio.currentSrc).pathname === path;
 
 export default function MusicCarousel() {
   const [activeIndex, setActiveIndex] = useState(
@@ -74,14 +88,14 @@ export default function MusicCarousel() {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const isWrappingRef = useRef<boolean>(false);
 
-  const lock = (duration = TRANSITION_DURATION * 2) => {
+  const lock = useCallback((duration = TRANSITION_DURATION * 2) => {
     if (lockTimeoutRef.current) clearTimeout(lockTimeoutRef.current);
     setIsLocked(true);
     lockTimeoutRef.current = setTimeout(() => {
       setIsLocked(false);
       isWrappingRef.current = false;
     }, duration);
-  };
+  }, []);
 
   const unlock = () => {
     if (lockTimeoutRef.current) clearTimeout(lockTimeoutRef.current);
@@ -134,76 +148,86 @@ export default function MusicCarousel() {
       }, TRANSITION_DURATION + WRAP_DELAY);
     }
     return () => clearTimeout(wrapTimeout);
-  }, [activeIndex, carouselItems.length]);
+  }, [activeIndex, lock]);
 
-  const handleLeft = () => {
+  const handleLeft = useCallback(() => {
     if (isLocked) return;
     lock();
-    // togglePlayback();
-    // setProgress(0);
     setActiveIndex((prev) => prev - 1);
-  };
+  }, [isLocked, lock]);
 
-  const handleRight = () => {
+  const handleRight = useCallback(() => {
     if (isLocked) return;
     lock();
-    // togglePlayback();
-    // setProgress(0);
     setActiveIndex((prev) => prev + 1);
-  };
+  }, [isLocked, lock]);
 
   // Audio
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const playbackRequestedRef = useRef(false);
+  const musicPath = carouselItems[activeIndex].music_path;
+  // Measured from the bundled WAV files, so track changes never flash 0:00.
+  const trackDuration = carouselItems[activeIndex].duration;
   const [isPlaying, setIsPlaying] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(trackDuration);
+  const [isSeeking, setIsSeeking] = useState(false);
+  const seekStartRef = useRef<number | null>(null);
+  const progress = duration > 0 ? (currentTime / duration) * 100 : 0;
 
-  const [progress, setProgress] = useState(0); // 0 to 100
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (activeIndex === 1 || activeIndex === carouselItems.length - 2) return;
+    let cancelled = false;
+    // Cached metadata can load before React attaches the media event handlers.
+    // Read the element on mount/source changes as well as listening for events.
+    const hasCurrentMetadata = audio.readyState >= 1 && isCurrentTrack(audio, musicPath);
+    setCurrentTime(hasCurrentMetadata ? audio.currentTime : 0);
+    setDuration(hasCurrentMetadata && Number.isFinite(audio.duration) ? audio.duration : trackDuration);
+    setIsSeeking(false);
+    setIsPlaying(!audio.paused && !audio.ended);
 
-    // Reset playback
-    audio.currentTime = 0;
-    setProgress(0);
-
-    // Optionally start playing new track if one was already playing
-    if (isPlaying) {
-      audio.play();
+    if (playbackRequestedRef.current) {
+      audio.play().catch((error: unknown) => {
+        if (cancelled || (error instanceof DOMException && error.name === "AbortError")) return;
+        playbackRequestedRef.current = false;
+        setIsPlaying(false);
+      });
     }
-  }, [activeIndex, isAnimating]);
+    return () => { cancelled = true; };
+  }, [musicPath, trackDuration]);
 
   const togglePlayback = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    if (isPlaying) {
+    if (playbackRequestedRef.current) {
+      playbackRequestedRef.current = false;
       audio.pause();
     } else {
-      audio.play();
+      playbackRequestedRef.current = true;
+      audio.play().catch((error: unknown) => {
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        playbackRequestedRef.current = false;
+        setIsPlaying(false);
+      });
     }
-
-    setIsPlaying(!isPlaying);
   };
 
-  // Progress Bar
-  useEffect(() => {
+  const seek = (seconds: number) => {
     const audio = audioRef.current;
     if (!audio) return;
+    const availableDuration = Number.isFinite(audio.duration) ? audio.duration : trackDuration;
+    if (availableDuration <= 0) return;
+    const nextTime = Math.max(0, Math.min(seconds, availableDuration));
+    audio.currentTime = nextTime;
+    setCurrentTime(nextTime);
+  };
 
-    const updateProgress = () => {
-      if (audio.duration) {
-        const percent = (audio.currentTime / audio.duration) * 100;
-        setProgress(percent);
-      }
-    };
-
-    audio.addEventListener("timeupdate", updateProgress);
-
-    return () => {
-      audio.removeEventListener("timeupdate", updateProgress);
-    };
-  }, [activeIndex]);
+  const finishSeeking = () => {
+    seekStartRef.current = null;
+    setIsSeeking(false);
+  };
 
   return (
     <div className="w-full flex flex-col items-center gap-4">
@@ -262,12 +286,13 @@ export default function MusicCarousel() {
       </div>
 
       {/* Control Panel */}
-      <div className="w-full max-w-screen-lg min-w-[450px] px-6 flex flex-col  items-center gap-2">
+      <div className="w-full max-w-screen-lg min-w-[450px] px-6 flex flex-col items-center gap-2">
         <div className="flex items-center justify-center gap-6">
           <button
             onClick={handleLeft}
             disabled={isLocked}
-            className="text-white cursor-pointer"
+            aria-label="Previous track"
+            className="rounded-full p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
           >
             <ChevronLeft
               className="w-6 h-6
@@ -278,7 +303,8 @@ export default function MusicCarousel() {
 
           <button
             onClick={togglePlayback}
-            className="bg-white text-black p-2 rounded-full cursor-pointer"
+            aria-label={isPlaying ? "Pause" : "Play"}
+            className="bg-white text-black p-2 rounded-full cursor-pointer transition-transform hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             {isPlaying ? (
               <Pause className="w-6 h-6" />
@@ -290,7 +316,8 @@ export default function MusicCarousel() {
           <button
             onClick={handleRight}
             disabled={isLocked}
-            className="text-white cursor-pointer"
+            aria-label="Next track"
+            className="rounded-full p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
           >
             <ChevronRight
               className="w-6 h-6
@@ -300,33 +327,74 @@ export default function MusicCarousel() {
           </button>
         </div>
 
-        {/* Progress bar below buttons */}
-        <div className="w-1/2 justify-center h-1 bg-gray-700 rounded overflow-hidden">
-          <div
-            className="w-full h-1 bg-gray-700 rounded overflow-hidden cursor-pointer"
-            onClick={(e) => {
-              const rect = e.currentTarget.getBoundingClientRect();
-              const clickX = e.clientX - rect.left;
-              const barWidth = rect.width;
-              const ratio = clickX / barWidth;
-
-              const audio = audioRef.current;
-              if (audio && audio.duration) {
-                audio.currentTime = ratio * audio.duration;
-              }
-            }}
-          >
-            <div
-              className="h-full bg-white transition-all duration-200"
-              style={{ width: `${progress}%` }}
-            ></div>
+        <div className="w-1/2">
+          <div className="music-seek-control" data-seeking={isSeeking}>
+            <span className="music-seek-rail" aria-hidden="true">
+              <span className="music-seek-fill" style={{ width: `${progress}%` }} />
+              <span className="music-seek-thumb" style={{ left: `${progress}%` }} />
+            </span>
+            <input
+              type="range"
+              min={0}
+              max={duration || 1}
+              step="0.1"
+              value={Math.min(currentTime, duration)}
+              disabled={duration <= 0}
+              onChange={(event) => seek(Number(event.target.value))}
+              onPointerDown={(event) => { seekStartRef.current = event.clientX; }}
+              onPointerMove={(event) => {
+                if (seekStartRef.current !== null && Math.abs(event.clientX - seekStartRef.current) > 3) {
+                  setIsSeeking(true);
+                }
+              }}
+              onPointerUp={finishSeeking}
+              onPointerCancel={finishSeeking}
+              onBlur={finishSeeking}
+              aria-label="Seek through track"
+              aria-valuetext={`${formatTime(currentTime)} of ${formatTime(duration)}`}
+              className="music-seek"
+            />
+          </div>
+          <div className="flex justify-between text-[0.8125rem] text-gray-400 tabular-nums">
+            <span>{formatTime(currentTime)}</span>
+            <span>{formatTime(duration)}</span>
           </div>
         </div>
       </div>
       <audio
         ref={audioRef}
-        src={carouselItems[activeIndex].music_path}
-        preload="auto"
+        src={musicPath}
+        preload="metadata"
+        onEmptied={() => {
+          setCurrentTime(0);
+        }}
+        onLoadedMetadata={(event) => {
+          if (!isCurrentTrack(event.currentTarget, musicPath)) return;
+          const seconds = event.currentTarget.duration;
+          if (Number.isFinite(seconds) && seconds > 0) setDuration(seconds);
+        }}
+        onDurationChange={(event) => {
+          if (!isCurrentTrack(event.currentTarget, musicPath)) return;
+          const seconds = event.currentTarget.duration;
+          if (Number.isFinite(seconds) && seconds > 0) setDuration(seconds);
+        }}
+        onTimeUpdate={(event) => {
+          if (isCurrentTrack(event.currentTarget, musicPath)) {
+            setCurrentTime(event.currentTarget.currentTime);
+          }
+        }}
+        onPlay={() => setIsPlaying(true)}
+        onPause={() => setIsPlaying(false)}
+        onEnded={() => {
+          playbackRequestedRef.current = false;
+          setIsPlaying(false);
+        }}
+        onError={() => {
+          playbackRequestedRef.current = false;
+          setIsPlaying(false);
+          setCurrentTime(0);
+          setDuration(0);
+        }}
       />
     </div>
   );
