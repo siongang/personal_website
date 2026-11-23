@@ -257,10 +257,31 @@ export default function MusicCarousel() {
 
   return (
     <div ref={playerRef} className="w-full flex flex-col items-center gap-4">
+      {/* On narrow screens, give the selected track the available space. */}
+      <a
+        href={carouselItems[activeIndex].links[0].url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex w-full max-w-[20rem] flex-col items-center gap-3 rounded-xl text-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:hidden"
+        aria-label={`Listen to ${carouselItems[activeIndex].title} on YouTube`}
+      >
+        <Image
+          src={carouselItems[activeIndex].image_path}
+          alt={carouselItems[activeIndex].title}
+          width={320}
+          height={320}
+          sizes="(max-width: 767px) 288px, 240px"
+          className="aspect-square w-[min(100%,clamp(10rem,38dvh,18rem))] rounded-xl object-cover"
+        />
+        <span className="text-lg font-medium leading-snug text-white">
+          {carouselItems[activeIndex].title}
+        </span>
+      </a>
+
       {/* Carousel Viewport */}
       <div
         ref={viewportRef}
-        className="flex flex-row overflow-hidden w-full max-w-screen-lg min-w-[350px] min-h-[150px]"
+        className="hidden md:flex flex-row overflow-hidden w-full max-w-screen-lg min-h-[150px]"
         
       >
         <div
@@ -312,14 +333,14 @@ export default function MusicCarousel() {
       </div>
 
       {/* Control Panel */}
-      <div className="w-full max-w-screen-lg min-w-[450px] px-6 flex flex-col items-center gap-2">
+      <div className="w-full max-w-[20rem] px-2 md:max-w-screen-lg md:px-6 flex flex-col items-center gap-2">
         <div className="flex items-center justify-center gap-6">
           <button
             onClick={handleLeft}
             disabled={isLocked}
             aria-label="Previous track"
             aria-keyshortcuts="ArrowLeft"
-            className="rounded-full p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
+            className="rounded-full p-2.5 md:p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
           >
             <ChevronLeft
               className="w-6 h-6
@@ -331,7 +352,7 @@ export default function MusicCarousel() {
           <button
             onClick={togglePlayback}
             aria-label={isPlaying ? "Pause" : "Play"}
-            className="bg-white text-black p-2 rounded-full cursor-pointer transition-transform hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="bg-white text-black p-4 md:p-2 rounded-full cursor-pointer transition-transform hover:scale-105 active:scale-95 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             {isPlaying ? (
               <Pause className="w-6 h-6" />
@@ -345,7 +366,7 @@ export default function MusicCarousel() {
             disabled={isLocked}
             aria-label="Next track"
             aria-keyshortcuts="ArrowRight"
-            className="rounded-full p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
+            className="rounded-full p-2.5 md:p-1 text-white cursor-pointer transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white disabled:opacity-40 disabled:cursor-default"
           >
             <ChevronRight
               className="w-6 h-6
@@ -355,7 +376,7 @@ export default function MusicCarousel() {
           </button>
         </div>
 
-        <div className="w-1/2">
+        <div className="order-first w-full md:order-none md:w-1/2">
           <div className="music-seek-control" data-seeking={isSeeking}>
             <span className="music-seek-rail" aria-hidden="true">
               <span className="music-seek-fill" style={{ width: `${progress}%` }} />

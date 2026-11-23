@@ -102,7 +102,7 @@ export default function HomePage() {
             <p className="text-sm text-gray-400 mt-2 ml-1">originals composed and produced by yours truly.</p>
           </div>
 
-          <div className="flex flex-row justify-center w-1/2">
+          <div className="mt-8 flex flex-row justify-center w-full px-4 md:mt-0 md:w-1/2 md:px-0">
             <MusicCarousel />
           </div>
         </section>
