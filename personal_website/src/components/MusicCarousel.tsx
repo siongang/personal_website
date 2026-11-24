@@ -434,9 +434,12 @@ export default function MusicCarousel() {
         }}
         onPlay={() => setIsPlaying(true)}
         onPause={() => setIsPlaying(false)}
-        onEnded={() => {
-          playbackRequestedRef.current = false;
-          setIsPlaying(false);
+        onEnded={(event) => {
+          if (!isCurrentTrack(event.currentTarget, musicPath)) return;
+          playbackRequestedRef.current = true;
+          lock();
+          // The trailing clone already represents the first song during wraparound.
+          setActiveIndex((prev) => prev === carouselItems.length - 2 ? 3 : prev + 1);
         }}
         onError={() => {
           playbackRequestedRef.current = false;
